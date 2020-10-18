@@ -2,7 +2,7 @@ const myHeading = document.querySelector('h1');
 myHeading.textContent = 'Hello world!';
 
 //Changing the title to Notorious B.C.E.
-document.querySelector(title) = 'Notorious B.C.E'
+document.title = 'Notorious B.C.E'
 
 // Creating a new image
 let img = new Image();
