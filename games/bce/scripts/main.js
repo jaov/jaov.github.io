@@ -25,6 +25,23 @@ const height = 18;
 const scaledWidth = scale * width;
 const scaledHeight = scale * height;
 
+// The loop goes idle, left, idle, right.
+const cycleLoop = [0, 1, 0, 2];
+let currentLoopIndex = 0;
+
+// At the moment clears all the canvas as to not redraw,
+// I have to fix this later!
+function step() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawFrame(cycleLoop[currentLoopIndex], 0, 0, 0);
+      currentLoopIndex++;
+      if (currentLoopIndex >= cycleLoop.length) {
+              currentLoopIndex = 0;
+            }
+      window.requestAnimationFrame(step);
+}
+
+
 // Simplifying the drawImage call with variable names
 function drawFrame(frameX, frameY, canvasX, canvasY) {
     ctx.drawImage(img, frameX * width, frameY * height, width, height,
@@ -32,10 +49,5 @@ function drawFrame(frameX, frameY, canvasX, canvasY) {
 }
 // body of init function
 function init() {
-    // calling the drawImage function reading
-    // from the spritesheet.
-    drawFrame(0,0,0,0);
-    drawFrame(1,0, scaledWidth, 0);
-    drawFrame(0,0, scaledWidth * 2, 0);
-    drawFrame(2,0, scaledWidth * 3, 0);
+    window.requestAnimationFrame(step);
 }
