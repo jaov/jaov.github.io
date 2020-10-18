@@ -25,11 +25,6 @@ const HEIGHT = 18;
 const SCALED_WIDTH = scale * width;
 const SCALED_HEIGHT = scale * height;
 
-// The loop goes idle, left, idle, right.
-const cycleLoop = [0, 1, 0, 2];
-let currentLoopIndex = 0;
-
-
 // Simplifying the drawImage call with variable names
 function drawFrame(frameX, frameY, canvasX, canvasY) {
     ctx.drawImage(img, frameX * width, frameY * height, width, height,
