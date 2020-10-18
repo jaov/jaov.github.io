@@ -3,7 +3,7 @@ myHeading.textContent = 'Hello world!';
 
 // Creating a new image
 let img = new Image();
-img.src = 'images/Green-Cap-Character';
+img.src = 'images/Green-Cap-Character.png';
 
 // Initializing when image is loaded
 img.onload = function() {
