@@ -19,9 +19,9 @@ let canvas = document.querySelector('canvas');
 let ctx = canvas.getContext('2d');
 
 // variables to understand the calls better
-const scale 2;
-const width 16;
-const height 18;
+const scale = 2;
+const width = 16;
+const height = 18;
 const scaledWidth = scale * width;
 const scaledHeight = scale * height;
 
