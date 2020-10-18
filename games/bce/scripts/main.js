@@ -18,9 +18,24 @@ let canvas = document.querySelector('canvas');
 // ctx is context
 let ctx = canvas.getContext('2d');
 
+// variables to understand the calls better
+const scale 2;
+const width 16;
+const height 18;
+const scaledWidth = scale * width;
+const scaledHeight = scale * height;
+
+// Simplifying the drawImage call with variable names
+function drawFrame(frameX, frameY, canvasX, canvasY) {
+    ctx.drawImage(img, frameX * width, frameY * height, width, height,
+                  canvasX, canvasY, scaledWidth, scaledHeight);
+}
 // body of init function
 function init() {
     // calling the drawImage function reading
     // from the spritesheet.
-    ctx.drawImage(img, 0,0,16,18,0,0,16,18);
+    drawFrame(0,0,0,0);
+    drawFrame(1,0, scaledWidth, 0);
+    drawFrame(0,0, scaledWidth * 2, 0);
+    drawFrame(2,0, scaledWidth * 3, 0);
 }
