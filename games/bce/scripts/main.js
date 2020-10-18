@@ -20,5 +20,7 @@ let ctx = canvas.getContext('2d');
 
 // body of init function
 function init() {
-    // TODO animation code
+    // calling the drawImage function reading
+    // from the spritesheet.
+    ctx.drawImage(img, 0,0,16,18,0,0,16,18);
 }
