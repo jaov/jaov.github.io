@@ -22,8 +22,8 @@ let ctx = canvas.getContext('2d');
 const SCALE = 2;
 const WIDTH = 16;
 const HEIGHT = 18;
-const SCALED_WIDTH = scale * width;
-const SCALED_HEIGHT = scale * height;
+const SCALED_WIDTH = SCALE * WIDTH;
+const SCALED_HEIGHT = SCALE * HEIGHT;
 
 // Simplifying the drawImage call with variable names
 function drawFrame(frameX, frameY, canvasX, canvasY) {
