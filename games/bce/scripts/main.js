@@ -52,8 +52,12 @@ function drawFrame(frameX, frameY, canvasX, canvasY) {
 
 
 function moveCharacter(deltaX, deltaY, direction) {
-    positionX += deltaX;
-    positionY += deltaY;
+    if (positionX + deltaX > 0 && positionX + SCALED_WIDTH + deltaX < canvas.width) {
+        positionX += deltaX;
+    }
+    if (positionY + deltaY > 0 && positionY + SCALED_HEIGHT + deltaY < canvas.height) {
+        positionY += deltaY;
+    }
     currentDirection = direction;
 }
 
