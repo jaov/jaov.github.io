@@ -36,7 +36,13 @@ function drawFrame(frameX, frameY, canvasX, canvasY) {
 const CYCLE_LOOP = [0, 1, 0, 2];
 let currentLoopIndex = 0;
 let frameCount = 0;
-let currentDirection = 0;
+
+// Marking the index of the character facing
+const FACING_DOWN = 0;
+const FACING_UP = 1;
+const FACING_LEFT = 2;
+const FACING_RIGHT =3;
+let currentDirection = FACING_DOWN;
 
 // Let's get some event listeners here
 let keyPresses = {};
@@ -64,15 +70,20 @@ function gameLoop() {
 
     if (keyPresses.w) {
         positionY -= MOVEMENT_SPEED;
+        currentDirection = FACING_UP;
     } else if (keyPresses.s) {
         positionY += MOVEMENT_SPEED;
+        currentDirection = FACING_DOWN;
     }
     if (keyPresses.a) {
         positionX -= MOVEMENT_SPEED;
+        currentDirection = FACING_LEFT;
+        
     } else if (keyPresses.d) {
         positionX += MOVEMENT_SPEED;
+        currentDirection = FACING_RIGHT;
     }
 
-    drawFrame(0, 0, positionX positionY);
+    drawFrame(0, currentDirection, positionX positionY);
     window.requestAnimationFrame(gameLoop);
 }
