@@ -1,53 +1,31 @@
-const myHeading = document.querySelector('h1');
-myHeading.textContent = 'Hello world!';
-
-//Changing the title to Notorious B.C.E.
-document.title = 'Notorious B.C.E'
-
-// Creating a new image
-let img = new Image();
-img.src = 'images/Green-Cap-Character.png';
-
-// Initializing when image is loaded
-img.onload = function() {
-    window.requestAnimationFrame(gameLoop);
-};
-
-// Selecting canvas on the document
-let canvas = document.querySelector('canvas');
-// ctx is context (we are using 2d)
-let ctx = canvas.getContext('2d');
-
-// variables to understand the calls better
-const SCALE = 2;
-const WIDTH = 16;
-const HEIGHT = 18;
-const SCALED_WIDTH = SCALE * WIDTH;
-const SCALED_HEIGHT = SCALE * HEIGHT;
-
-// Simplifying the drawImage call with variable names
-function drawFrame(frameX, frameY, canvasX, canvasY) {
-    ctx.drawImage(img, frameX * WIDTH, frameY * HEIGHT, WIDTH, HEIGHT,
-                  canvasX, canvasY, SCALED_WIDTH, SCALED_HEIGHT);
-}
-
-// Changing this for directions
-// and also for game loop logic
-const CYCLE_LOOP = [0, 1, 0, 2];
-let currentLoopIndex = 0;
-let frameCount = 0;
-
-// Marking the index of the character facing
-const FACING_DOWN = 0;
-const FACING_UP = 1;
-const FACING_LEFT = 2;
+const FRAME_LIMIT = 12;
+const MOVEMENT_SPEED = 1;
 const FACING_RIGHT =3;
-let currentDirection = FACING_DOWN;
+const FACING_LEFT = 2;
+const FACING_UP = 1;
+const FACING_DOWN = 0;
+const CYCLE_LOOP = [0, 1, 0, 2];
+const SCALED_HEIGHT = SCALE * HEIGHT;
+const SCALED_WIDTH = SCALE * WIDTH;
+const HEIGHT = 18;
+const WIDTH = 16;
+const SCALE = 2;
+const myHeading = document.querySelector('h1');
 
-// Let's get some event listeners here
+
+let positionY = 0;
+let positionX = 0;
 let keyPresses = {};
+let currentDirection = FACING_DOWN;
+let frameCount = 0;
+let currentLoopIndex = 0;
+let ctx = canvas.getContext('2d');
+let canvas = document.querySelector('canvas');
+let img = new Image();
 
-//These two just let me know when a key is pressed or not
+document.title = 'Notorious B.C.E'
+myHeading.textContent = 'Codename: B.C.E.';
+
 window.addEventListener('keydown', keyDownListener, false);
 function keyDownListener(event) {
     keyPresses[event.key] = true;
@@ -58,37 +36,48 @@ function keyUpListener(event) {
     keyPresses[event.key] = false;
 }
 
-// Now movement
-const MOVEMENT_SPEED = 1;
-let positionX = 0;
-let positionY = 0;
+function loadImage() {
+    img.src = 'images/Green-Cap-Character.png';
+    img.onload = function() {
+        window.requestAnimationFrame(gameLoop);
+    };
+}
 
-// Animating again
-const FRAME_LIMIT = 12;
-// Body of init function
+
+
+function drawFrame(frameX, frameY, canvasX, canvasY) {
+    ctx.drawImage(img, frameX * WIDTH, frameY * HEIGHT, WIDTH, HEIGHT,
+                  canvasX, canvasY, SCALED_WIDTH, SCALED_HEIGHT);
+}
+
+
+function moveCharacter(deltaX, deltaY, direction) {
+    positionX += deltaX;
+    positionY += deltaY;
+    currentDirection = direction;
+}
+
+loadImage();
+
+
 function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     let hasMoved = false;
 
     if (keyPresses.w) {
-        positionY -= MOVEMENT_SPEED;
-        currentDirection = FACING_UP;
+        moveCharacter(0, -MOVEMENT_SPEED, FACING_UP);
         hasMoved = true;
     } else if (keyPresses.s) {
-        positionY += MOVEMENT_SPEED;
-        currentDirection = FACING_DOWN;
+        moveCharacter(0, MOVEMENT_SPEED, FACING_DOWN);
         hasMoved = true;
     }
 
     if (keyPresses.a) {
-        positionX -= MOVEMENT_SPEED;
-        currentDirection = FACING_LEFT;
-        hasMoved = true;
-        
+        moveCharacter(-MOVEMENT_SPEED, 0, FACING_LEFT);
+        hasMoved = true; 
     } else if (keyPresses.d) {
-        positionX += MOVEMENT_SPEED;
-        currentDirection = FACING_RIGHT;
+        moveCharacter(MOVEMENT_SPEED, 0, FACING_RIGHT);
         hasMoved = true;
     }
 
