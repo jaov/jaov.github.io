@@ -38,7 +38,41 @@ let currentLoopIndex = 0;
 let frameCount = 0;
 let currentDirection = 0;
 
+// Let's get some event listeners here
+let keyPresses = {};
+
+//These two just let me know when a key is pressed or not
+window.addEventListener('keydown', keyDownlistener, false);
+function keyDownListener(event) {
+    keyPresses[event.key] = true;
+}
+
+window.addEventListener('keyup', keyUpListener, false);
+function keyUpListener(event) {
+    keyPresses[event.key] = false;
+}
+
+// Now movement
+const MOVEMENT_SPEED = 1;
+let positionX = 0;
+let positionY = 0;
+
+
 // body of init function
 function gameLoop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    if (keyPresses.w) {
+        positionY -= MOVEMENT_SPEED;
+    } else if (keyPresses.s) {
+        positionY += MOVEMENT_SPEED;
+    }
+    if (keyPresses.a) {
+        positionX -= MOVEMENT_SPEED;
+    } else if (keyPresses.d) {
+        positionX += MOVEMENT_SPEED;
+    }
+
+    drawFrame(0, 0, positionX positionY);
     window.requestAnimationFrame(gameLoop);
 }
