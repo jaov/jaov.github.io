@@ -48,7 +48,7 @@ let currentDirection = FACING_DOWN;
 let keyPresses = {};
 
 //These two just let me know when a key is pressed or not
-window.addEventListener('keydown', keyDownlistener, false);
+window.addEventListener('keydown', keyDownListener, false);
 function keyDownListener(event) {
     keyPresses[event.key] = true;
 }
@@ -63,25 +63,44 @@ const MOVEMENT_SPEED = 1;
 let positionX = 0;
 let positionY = 0;
 
-
-// body of init function
+// Animating again
+const FRAME_LIMIT 12;
+// Body of init function
 function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    let hasMoved = false;
 
     if (keyPresses.w) {
         positionY -= MOVEMENT_SPEED;
         currentDirection = FACING_UP;
+        hasMoved = true;
     } else if (keyPresses.s) {
         positionY += MOVEMENT_SPEED;
         currentDirection = FACING_DOWN;
+        hasMoved = true;
     }
+
     if (keyPresses.a) {
         positionX -= MOVEMENT_SPEED;
         currentDirection = FACING_LEFT;
+        hasMoved = true;
         
     } else if (keyPresses.d) {
         positionX += MOVEMENT_SPEED;
         currentDirection = FACING_RIGHT;
+        hasMoved = true;
+    }
+
+    if (hasMoved) {
+        frameCount++;
+        if (frameCount >= FRAME_LIMIT) {
+            frameCount = 0;
+            currentLoopIndex++;
+            if (currentLoopIndex >= CYCLE_LOOP.length) {
+                currentLoopIndex = 0;
+            }
+        }
     }
 
     drawFrame(0, currentDirection, positionX, positionY);
