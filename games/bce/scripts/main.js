@@ -84,6 +84,6 @@ function gameLoop() {
         currentDirection = FACING_RIGHT;
     }
 
-    drawFrame(0, currentDirection, positionX positionY);
+    drawFrame(0, currentDirection, positionX, positionY);
     window.requestAnimationFrame(gameLoop);
 }
