@@ -64,7 +64,7 @@ let positionX = 0;
 let positionY = 0;
 
 // Animating again
-const FRAME_LIMIT 12;
+const FRAME_LIMIT = 12;
 // Body of init function
 function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
