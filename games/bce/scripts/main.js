@@ -25,7 +25,7 @@ let img = new Image();
 
 document.title = 'Notorious B.C.E'
 myHeading.textContent = 'Codename: B.C.E.';
-const myParagraph = document.querySelector('p');
+let myParagraph = document.querySelector('p');
 myParagraph.innerHTML = 'Move with WASD';
 
 window.addEventListener('keydown', keyDownListener, false);
