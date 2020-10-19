@@ -25,7 +25,9 @@ let img = new Image();
 
 document.title = 'Notorious B.C.E'
 myHeading.textContent = 'Codename: B.C.E.';
-document.querySelector('p') = 'Move with WASD';
+const myParagraph = document.querySelector('p');
+myParagraph = 'Move with WASD';
+
 window.addEventListener('keydown', keyDownListener, false);
 function keyDownListener(event) {
     keyPresses[event.key] = true;
