@@ -103,6 +103,6 @@ function gameLoop() {
         }
     }
 
-    drawFrame(0, currentDirection, positionX, positionY);
+    drawFrame(CYCLE_LOOP[currentLoopIndex], currentDirection, positionX, positionY);
     window.requestAnimationFrame(gameLoop);
 }
