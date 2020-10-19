@@ -5,11 +5,11 @@ const FACING_LEFT = 2;
 const FACING_UP = 1;
 const FACING_DOWN = 0;
 const CYCLE_LOOP = [0, 1, 0, 2];
-const SCALED_HEIGHT = SCALE * HEIGHT;
-const SCALED_WIDTH = SCALE * WIDTH;
 const HEIGHT = 18;
 const WIDTH = 16;
 const SCALE = 2;
+const SCALED_HEIGHT = SCALE * HEIGHT;
+const SCALED_WIDTH = SCALE * WIDTH;
 const myHeading = document.querySelector('h1');
 
 
