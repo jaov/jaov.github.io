@@ -95,6 +95,12 @@ function gameLoop() {
             }
         }
     }
+    
+    // If we stop moving, we make the current index 0
+    // which is the resting position
+    if (!hasMoved) {
+        currentLoopIndex = 0;
+    }
 
     drawFrame(CYCLE_LOOP[currentLoopIndex], currentDirection, positionX, positionY);
     window.requestAnimationFrame(gameLoop);
