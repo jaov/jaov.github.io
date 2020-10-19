@@ -19,8 +19,8 @@ let keyPresses = {};
 let currentDirection = FACING_DOWN;
 let frameCount = 0;
 let currentLoopIndex = 0;
-let ctx = canvas.getContext('2d');
 let canvas = document.querySelector('canvas');
+let ctx = canvas.getContext('2d');
 let img = new Image();
 
 document.title = 'Notorious B.C.E'
