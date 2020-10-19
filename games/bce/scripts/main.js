@@ -27,8 +27,8 @@ const SCALED_HEIGHT = SCALE * HEIGHT;
 
 // Simplifying the drawImage call with variable names
 function drawFrame(frameX, frameY, canvasX, canvasY) {
-    ctx.drawImage(img, frameX * width, frameY * height, width, height,
-                  canvasX, canvasY, scaledWidth, scaledHeight);
+    ctx.drawImage(img, frameX * WIDTH, frameY * HEIGHT, WIDTH, HEIGHT,
+                  canvasX, canvasY, SCALED_WIDTH, SCALED_HEIGHT);
 }
 
 // Changing this for directions
